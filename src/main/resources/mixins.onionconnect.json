@@ -1,0 +1,12 @@
+{
+    "compatibilityLevel": "JAVA_8",
+    "package": "dev.debuggings.onionconnect.mixins",
+    "client": [
+        "MixinGuiConnecting",
+        "MixinNetworkManager",
+        "MixinOldServerPinger",
+        "MixinChannelInitializer",
+        "MixinBootstrap"
+    ],
+    "verbose": true
+}
