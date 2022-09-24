@@ -15,6 +15,8 @@ public class MixinNetworkManager {
 
     @Redirect(method = "createNetworkManagerAndConnect", at = @At(value = "INVOKE", target = "Lio/netty/bootstrap/Bootstrap;connect(Ljava/net/InetAddress;I)Lio/netty/channel/ChannelFuture;", remap = false))
     private static ChannelFuture onionconnect$redirectConnect(Bootstrap instance, InetAddress inetHost, int inetPort) {
-        return instance.connect(OnionConnect.Companion.getConnectingIP().get(), inetPort);
+        String connectingIP = OnionConnect.Companion.getConnectingIP().get();
+        if (connectingIP != null) return instance.connect(connectingIP, inetPort);
+        return instance.connect(inetHost, inetPort);
     }
 }
